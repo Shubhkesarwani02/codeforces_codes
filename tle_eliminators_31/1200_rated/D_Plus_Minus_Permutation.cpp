@@ -15,7 +15,7 @@ using namespace std;
 
 void helper()
 {
-    
+    cout << 1 << endl;
 }
 
 signed main()
