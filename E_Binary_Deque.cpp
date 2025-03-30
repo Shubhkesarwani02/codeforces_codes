@@ -43,21 +43,11 @@ void helper()
     cin >> n >> s;
     vi nums(n);
     input(nums);
-
-    int tot = accumulate(nums.begin(), nums.end(), 0);
-    if (tot < s)
-    {
+    int len = longestSubarrayWithSum(nums, s);
+    if (len == -1)
         cout << -1 << endl;
-    }
-    else if (tot == s)
-    {
-        cout << 0 << endl;
-    }
     else
-    {
-        int len = longestSubarrayWithSum(nums, s);
-        cout << n - len << endl;
-    }
+        cout << n - longestSubarrayWithSum(nums, s) << endl;
 }
 
 signed main()
