@@ -22,26 +22,31 @@ void helper()
     input(height);
     input(len);
 
-    vi req(m, 0);
-    vector<int> ptr(m, 0);
+    // also we can find the first indx where he cant jump using binary search and add the len using prefix sum
 
+    vector<pii> queries;
     for (int i = 0; i < m; i++)
     {
-        for (int j = ptr[i]; j < n; j++)
-        {
-            if (height[j] <= len[i])
-            {
-                req[i] += height[j];
-                ptr[i] = j + 1;
-            }
-            else
-            {
-                break;
-            }
-        }
+        queries.push_back({len[i], i});
     }
 
-    output(req);
+    sort(queries.begin(), queries.end());
+
+    vi ans(m, 0);
+    int j = 0;
+    int prefixSum = 0;
+
+    for (auto &q : queries)
+    {
+        while (j < n && height[j] <= q.first)
+        {
+            prefixSum += height[j];
+            j++;
+        }
+        ans[q.second] = prefixSum;
+    }
+
+    output(ans);
     cout << endl;
 }
 
