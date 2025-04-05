@@ -44,7 +44,7 @@ void helper() {
         return;
     }
     int g = candidates[0];
-    for (size_t i = 1; i < candidates.size(); i++) {
+    for (int i = 1; i < candidates.size(); i++) {
         g = gcd(g, candidates[i]);
     }
     cout << (g == 1 ? "Yes" : "No") << endl;
