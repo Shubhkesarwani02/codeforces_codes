@@ -1,31 +1,38 @@
 #include <bits/stdc++.h>
+#define vi vector<int>
+#define pii pair<int, int>
+#define input(v)      \
+    for (auto &i : v) \
+    cin >> i
+#define output(v)     \
+    for (auto &i : v) \
+    cout << i << " "
+#define pb push_back
+#define all(a) a.begin(), a.end()
+#define rep(i, a, b) for (int i = a; i <= b; i++)
 using namespace std;
 typedef long long ll;
 
 void helper()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
     int n;
     cin >> n;
-    vector<int> a(n), b(n);
-    for (auto &x : a)
-        cin >> x;
-    for (auto &x : b)
-        cin >> x;
-    vector<int> posA(n + 1), posB(n + 1);
+    vi a(n), b(n);
+    input(a);
+    input(b);
+    vi posA(n + 1), posB(n + 1);
     for (int i = 0; i < n; i++)
     {
         posA[a[i]] = i + 1;
         posB[b[i]] = i + 1;
     }
-    vector<int> revA(n + 1);
+    vi revA(n + 1);
     for (int i = 1; i <= n; i++)
     {
         revA[posA[i]] = i;
     }
     vector<bool> used(n + 1, false);
-    vector<int> L, R;
+    vi L, R;
     for (int v = 1; v <= n; v++)
     {
         if (posA[v] == posB[v])
@@ -36,7 +43,7 @@ void helper()
         int cand = revA[j];
         if (posB[cand] != i)
         {
-            cout << -1 << "\n";
+            cout << -1 << endl;
             return;
         }
         used[v] = used[cand] = true;
@@ -57,12 +64,12 @@ void helper()
     {
         if (selfCount)
         {
-            cout << -1 << "\n";
+            cout << -1 << endl;
             return;
         }
         if (L.size() * 2 != (size_t)n)
         {
-            cout << -1 << "\n";
+            cout << -1 << endl;
             return;
         }
     }
@@ -70,17 +77,17 @@ void helper()
     {
         if (selfCount != 1)
         {
-            cout << -1 << "\n";
+            cout << -1 << endl;
             return;
         }
         if (L.size() * 2 + 1 != (size_t)n)
         {
-            cout << -1 << "\n";
+            cout << -1 << endl;
             return;
         }
     }
     int m = L.size();
-    vector<int> target(n);
+    vi target(n);
     for (int i = 0; i < m; i++)
     {
         target[i] = L[i];
@@ -100,7 +107,7 @@ void helper()
             target[m + i] = R[m - 1 - i];
         }
     }
-    vector<int> curr(n);
+    vi curr(n);
     for (int i = 0; i < n; i++)
         curr[i] = i + 1;
     vector<pair<int, int>> ops;
@@ -116,15 +123,13 @@ void helper()
         swap(curr[i], curr[j]);
         ops.push_back({i + 1, j + 1});
     }
-    cout << ops.size() << "\n";
+    cout << ops.size() << endl;
     for (auto &p : ops)
-        cout << p.first << " " << p.second << "\n";
+        cout << p.first << " " << p.second << endl;
 }
 
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
     int t;
     cin >> t;
     while (t--)
