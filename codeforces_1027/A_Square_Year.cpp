@@ -13,13 +13,22 @@
 #define rep(i, a, b) for (int i = a; i <= b; i++)
 using namespace std;
 
-void helper()
-{
-    
+void helper() {
+    string s;
+    cin >> s;
+    long long N = stoll(s);
+    long long k = floor(sqrt((long double)N));
+    if ((k + 1) * (k + 1) == N) k++;
+    if (k * k == N)
+        cout << 0 << " " << k << '\n';
+    else
+        cout << -1 << '\n';
 }
 
-signed main()
-{
+signed main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int t;
     cin >> t;
     while (t--)
