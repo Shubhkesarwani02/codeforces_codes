@@ -15,7 +15,24 @@ using namespace std;
 
 void helper()
 {
-    
+    int n, k;
+    cin >> n >> k;
+
+    vi a(n), b(n);
+    input(a);
+    input(b);
+
+    int res = 0, sum = 0, mx = 0;
+
+    for (int i = 0; i < min(n, k); i++)
+    {
+        sum += a[i];
+        mx = max(mx, b[i]);
+        // check the reward(sum of all quests  score) afetr every split
+        res = max(res, sum + mx * (k - i - 1));
+    }
+
+    cout << res << endl;
 }
 
 signed main()
