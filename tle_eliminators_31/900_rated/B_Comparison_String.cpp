@@ -1,5 +1,5 @@
     #include <bits/stdc++.h>
-    #define int long long
+    #define ll long long
     #define vi vector<int>
     #define pii pair<int, int>
     #define input(v)      \
@@ -19,26 +19,31 @@
         cin >> n;
         string s;
         cin >> s;
-
+     
+        int max_streak = 0;
+        int curr_streak = 0;
+     
         if (n == 1)
         {
-            cout << 1 << endl;
+            cout << 2 << endl;
             return;
         }
      
-        int cnt = 1;
-        int maxi = 1;
-        rep(i, 1, n - 1)
+        for (int i = 0; i < n; ++i)
         {
-            if (s[i] == s[i - 1])
+            if (i == 0 || s[i] != s[i - 1])
             {
-                cnt++;
-                maxi = max(maxi, cnt);
+                curr_streak = 1;
             }
             else
-                cnt = 1;
+            {
+                curr_streak++;
+            }
+     
+            max_streak = max(max_streak, curr_streak);
         }
-        cout << cnt + 1 << endl;
+     
+        cout << max_streak + 1 << endl;
     }
      
     signed main()
